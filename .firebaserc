@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "hololive-fire": {
+      "hosting": {
+        "HOLOLIVE-ANGULAR": [
+          "hololive-fire"
+        ]
+      }
+    }
+  }
+}
