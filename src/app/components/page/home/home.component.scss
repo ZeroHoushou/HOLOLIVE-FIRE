@@ -28,3 +28,18 @@
     text-overflow: ellipsis;
   }
 }
+
+.container-spinner{
+  display:flex;
+  align-items: center;
+  justify-content:center;
+  height: 100%;
+}
+.JP {
+  background:rgb(255, 68, 68);
+}
+
+mat-chip.mat-chip.mat-primary.mat-standard-chip{
+  min-height: 1rem;
+  padding: 9px;
+}
