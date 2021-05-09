@@ -39,7 +39,7 @@ posts$!: Observable<PostI[]>;
   constructor(private postSvc:PostService) { }
 
   ngOnInit(): void {
-    // this.postSvc.getAllPosts().subscribe(res=>console.log('POSTS',res));
+    //  this.postSvc.getAllPosts().subscribe(res=>console.log('POSTS',res));
     this.posts$ =this.postSvc.getAllPosts();
   }
 

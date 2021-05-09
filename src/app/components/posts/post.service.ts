@@ -17,19 +17,30 @@ export class PostService {
     this.getAllPosts();
   }
 
+  // public getAllPosts(): Observable<PostI[]> {
+  //   return this.afs
+  //     .collection('posts')
+  //     .snapshotChanges()
+  //     .pipe(
+  //       map(actions =>
+  //         actions.map(a => a.payload.doc.data() as PostI
+  //   
+  //         )
+  //       )
+  //     );
+  // }
+
+
   public getAllPosts(): Observable<PostI[]> {
-    return this.afs
-      .collection('posts')
+    return this.postsCollection
       .snapshotChanges()
       .pipe(
         map(actions =>
-          actions.map(a => a.payload.doc.data() as PostI
-          //   {
-          //   const data = a.payload.doc.data() as PostI;
-          //   const id = a.payload.doc.id;
-          //   return { id, ...data };
-          // }
-          )
+          actions.map(a => {
+            const data = a.payload.doc.data() as PostI;
+            const id = a.payload.doc.id; //obetner el id de la coleccion (regularmente se generan aleatoriamente)
+            return { id, ...data };
+          })
         )
       );
   }
@@ -40,4 +51,10 @@ export class PostService {
   //   );
       
   // }
+
+
+  public getOnePost(id:PostI):Observable<PostI>{
+    return this.afs.doc<any>(`posts/${id}`).valueChanges();
+  }
+  
 }
