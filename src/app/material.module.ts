@@ -10,6 +10,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatInputModule } from '@angular/material/input';
 
 // const myModule= [MatFormFieldModule,MatCardModule,MatMenuModule,MatToolbarModule,MatIconModule,MatSidenavModule,MatListModule];
 @NgModule({
@@ -18,8 +19,8 @@ import { MatChipsModule } from '@angular/material/chips';
   ],
   imports: [
     CommonModule,
-    MatFormFieldModule,MatCardModule,MatMenuModule,MatToolbarModule,MatIconModule,MatSidenavModule,MatListModule,MatButtonModule,MatProgressSpinnerModule,MatChipsModule
+    MatFormFieldModule,MatInputModule,MatCardModule,MatMenuModule,MatToolbarModule,MatIconModule,MatSidenavModule,MatListModule,MatButtonModule,MatProgressSpinnerModule,MatChipsModule
   ],
-  exports:[MatFormFieldModule,MatCardModule,MatMenuModule,MatToolbarModule,MatIconModule,MatSidenavModule,MatListModule,MatButtonModule,MatProgressSpinnerModule,MatChipsModule]
+  exports:[MatFormFieldModule,MatInputModule,MatCardModule,MatMenuModule,MatToolbarModule,MatIconModule,MatSidenavModule,MatListModule,MatButtonModule,MatProgressSpinnerModule,MatChipsModule]
 })
 export class MaterialModule { }
