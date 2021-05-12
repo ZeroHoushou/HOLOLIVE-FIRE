@@ -16,7 +16,8 @@ import { AngularFireModule } from '@angular/fire';
 import {AngularFireAuthModule} from '@angular/fire/auth'
 import { environment } from 'src/environments/environment';
 import {ReactiveFormsModule} from '@angular/forms';
-import { ContainerAppComponent } from './components/pages/container-app/container-app.component'
+import { ContainerAppComponent } from './components/pages/container-app/container-app.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +25,7 @@ import { ContainerAppComponent } from './components/pages/container-app/containe
     PostComponent,
     ToolbarComponent,
     ContainerAppComponent
+
   ],
   imports: [
     BrowserModule,
