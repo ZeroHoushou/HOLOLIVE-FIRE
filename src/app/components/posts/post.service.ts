@@ -8,10 +8,10 @@ import { PostI } from '../../shared/models/post.interface';
   providedIn: 'root'
 })
 export class PostService {
-  
-  
+
+
   private postsCollection:AngularFirestoreCollection<PostI>;
-  
+
   constructor(private readonly afs: AngularFirestore) {
     this.postsCollection = afs.collection<PostI>('posts');
     this.getAllPosts();
@@ -24,7 +24,7 @@ export class PostService {
   //     .pipe(
   //       map(actions =>
   //         actions.map(a => a.payload.doc.data() as PostI
-  //   
+  //
   //         )
   //       )
   //     );
@@ -49,12 +49,12 @@ export class PostService {
   //   this.posts=this.postsCollection.snapshotChanges().pipe(
   //     map(actions =>actions.map(a=>a.payload.doc.data() as PostI))
   //   );
-      
+
   // }
 
 
   public getOnePost(id:PostI):Observable<PostI>{
     return this.afs.doc<any>(`posts/${id}`).valueChanges();
   }
-  
+
 }
