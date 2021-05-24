@@ -5,6 +5,8 @@ import { MatSort } from '@angular/material/sort';
 import { PostService } from '../../../components/posts/post.service';
 import { PostI } from '../../models/post.interface';
 import  Swal  from 'sweetalert2';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalComponent } from '../modal/modal.component';
 
 
 
@@ -18,7 +20,7 @@ export class TableComponent implements OnInit ,AfterViewInit {
   dataSource = new MatTableDataSource();
   @ViewChild(MatPaginator,{static:true}) paginator !: MatPaginator;
   @ViewChild(MatSort,{static:true}) sort !: MatSort;
-  constructor( private postSvc:PostService) { }
+  constructor( private postSvc:PostService, public dialog:MatDialog) { }
 
   ngOnInit(): void {
     this.postSvc.getAllPosts().subscribe(posts=> (this.dataSource.data = posts));
@@ -35,7 +37,7 @@ export class TableComponent implements OnInit ,AfterViewInit {
     console.log("edit",post);
   }
   onDeletePost(post:PostI){
-    console.log("delete",post);
+
     Swal.fire({
       title:'Are you sure?',
       text:'You won´t be able to revert this!',
@@ -47,13 +49,25 @@ export class TableComponent implements OnInit ,AfterViewInit {
 
     }).then(resutl=>{
       if(resutl.value){
-        console.log('Delete');
-        Swal.fire('Deleted!','Your post has been deleted','success');
+        this.postSvc.deletePostById(post).then(()=>{
+          Swal.fire('Deleted!','Your post has been deleted','success');
+        }).catch((error)=>{
+            Swal.fire('Error!', ' There  was an error  deleting this post', 'error');
+        });
+
       }
-    })
+    });
   }
 
   onNewPost(){
-    console.log("new");
+    this.openDialog();
+  }
+
+
+  openDialog():void{
+    const dialogRef=this.dialog.open(ModalComponent);
+    dialogRef.afterClosed().subscribe(result =>{
+      console.log(`Dialog Result ${result}`);
+    });
   }
 }

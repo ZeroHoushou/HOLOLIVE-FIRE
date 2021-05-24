@@ -17,6 +17,7 @@ import {AngularFireAuthModule} from '@angular/fire/auth'
 import { environment } from 'src/environments/environment';
 import {ReactiveFormsModule} from '@angular/forms';
 import { ContainerAppComponent } from './components/pages/container-app/container-app.component';
+import { ModalComponent } from './shared/components/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ContainerAppComponent } from './components/pages/container-app/containe
     NewPostComponent,
     PostComponent,
     ToolbarComponent,
-    ContainerAppComponent
+    ContainerAppComponent,
+    ModalComponent
 
   ],
   imports: [
@@ -39,6 +41,7 @@ import { ContainerAppComponent } from './components/pages/container-app/containe
     MaterialModule,
     ReactiveFormsModule
   ],
+  entryComponents:[ModalComponent],
   providers: [
     {
       provide: BUCKET,useValue:'hololive-fire.appspot.com'

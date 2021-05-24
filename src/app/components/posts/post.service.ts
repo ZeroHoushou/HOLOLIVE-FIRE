@@ -57,4 +57,16 @@ export class PostService {
     return this.afs.doc<any>(`posts/${id}`).valueChanges();
   }
 
+
+  public deletePostById (post: PostI)
+  {
+    return this.postsCollection.doc(post.id).delete();
+  }
+
+
+  public editPostById (post:PostI){
+
+    return this.postsCollection.doc(post.id).update(post);
+  }
+
 }
