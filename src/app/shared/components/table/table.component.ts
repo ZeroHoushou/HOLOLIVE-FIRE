@@ -17,7 +17,9 @@ import { ModalComponent } from '../modal/modal.component';
 })
 export class TableComponent implements OnInit ,AfterViewInit {
   displayedColumns: string[] = ['titlePost', 'tagsPost','actions'];
+
   dataSource = new MatTableDataSource();
+
   @ViewChild(MatPaginator,{static:true}) paginator !: MatPaginator;
   @ViewChild(MatSort,{static:true}) sort !: MatSort;
   constructor( private postSvc:PostService, public dialog:MatDialog) { }
@@ -35,6 +37,7 @@ export class TableComponent implements OnInit ,AfterViewInit {
   }
   onEditPost(post:PostI){
     console.log("edit",post);
+    this.openDialog(post);
   }
   onDeletePost(post:PostI){
 
@@ -64,10 +67,18 @@ export class TableComponent implements OnInit ,AfterViewInit {
   }
 
 
-  openDialog():void{
-    const dialogRef=this.dialog.open(ModalComponent);
+  openDialog(post?:PostI):void{
+    const config = {
+      data:{
+        message: post ? 'Edit Post' : 'New Post',
+        content:post
+      }
+    };
+    const dialogRef=this.dialog.open(ModalComponent, config);
     dialogRef.afterClosed().subscribe(result =>{
       console.log(`Dialog Result ${result}`);
     });
   }
+
+
 }
