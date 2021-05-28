@@ -4,14 +4,17 @@ import{ AngularFireAuth } from '@angular/fire/auth'
 import { Observable } from 'rxjs';
 
 import firebase from 'firebase/app';
+import { FileI } from '../models/file.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  public userData : Observable<firebase.User|null>;
+
+
+  public userData$ : Observable<firebase.User|null>;
   constructor(private afAuth:AngularFireAuth) {
-    this.userData =afAuth.authState;
+    this.userData$ =afAuth.authState;
   }
 
 
@@ -24,5 +27,13 @@ export class AuthService {
 
   logout(){
     this.afAuth.signOut();
+  }
+   async saveUserProfile(user: UserI) {
+    (await this.afAuth.currentUser)?.updateProfile({
+      displayName: user.displayName,
+      photoURL: user.photoURL
+    })
+    .then(() => console.log('User updated'))
+    .catch(err => console.log('Error', err));
   }
 }
