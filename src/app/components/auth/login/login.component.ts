@@ -27,7 +27,9 @@ export class LoginComponent implements OnInit {
     // };
     // this.authSvc.loginByEmail(user);
   }
-
+  loginGoogle() {
+    this.authSvc.login();
+  }
 
   onLogin(form:UserI){
     this.authSvc.loginByEmail(form)
